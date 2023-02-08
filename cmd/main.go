@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"os"
+	"github.com/andrewmolyuk/basalt/internal/log"
 )
 
 var (
@@ -11,6 +11,5 @@ var (
 )
 
 func main() {
-	fmt.Printf("Basalt %s\n", fmt.Sprintf("%s (git: %s)", version, commit[:7]))
-	os.Exit(0)
+	log.Info("Basalt %s\n", fmt.Sprintf("%s (git: %s)", version, commit[:7]))
 }
