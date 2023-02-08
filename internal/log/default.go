@@ -1,3 +1,4 @@
+// Package log provides a simple logger implementation with debug mode support and secrets masking
 package log
 
 import (
