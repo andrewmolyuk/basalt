@@ -2,8 +2,7 @@
 package main
 
 import (
-	"fmt"
-	"github.com/andrewmolyuk/basalt/internal/log"
+	"github.com/andrewmolyuk/basalt/internal/app"
 )
 
 var (
@@ -11,6 +10,14 @@ var (
 	commit  = "UNKNOWN"
 )
 
+// main is the entry point for the basalt command line tool.
 func main() {
-	log.Info("Basalt %s\n", fmt.Sprintf("%s (git: %s)", version, commit[:7]))
+	basaltApp := app.Basalt{
+		BuildInfo: app.BuildInfo{
+			Version: version,
+			Commit:  commit,
+		},
+	}
+
+	basaltApp.Run()
 }
