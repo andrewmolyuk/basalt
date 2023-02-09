@@ -3,36 +3,18 @@ package log
 
 import (
 	"github.com/andrewmolyuk/basalt/internal/exitor"
-	"os"
 )
 
 var instanceLogger ILogger
 
-func init() {
-	debugMode := os.Getenv("BASALT_DEBUG") == "true"
-	secrets := getSecrets()
-	instanceLogger = New(debugMode, secrets, exitor.New())
-	Info("Logger initialized successfully (debug mode: %v, secrets: %v)", debugMode, len(secrets))
-}
-
-func getSecrets() []string {
-	var secrets []string
-
-	var secretNames = []string{
-		"",
-	}
-
-	for _, name := range secretNames {
-		if value := os.Getenv(name); value != "" {
-			secrets = append(secrets, value)
-		}
-	}
-
-	return secrets
-}
-
 func getLogger() ILogger {
 	return instanceLogger
+}
+
+// Init initializes default logger
+func Init(debugMode bool, secrets []string) {
+	instanceLogger = New(debugMode, secrets, exitor.New())
+	Info("Logger initialized successfully (debug mode: %v, secrets: %v)", debugMode, len(secrets))
 }
 
 // Debug prints debug message if debug mode is enabled
